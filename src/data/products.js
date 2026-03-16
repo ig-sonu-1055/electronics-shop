@@ -1,0 +1,260 @@
+export const products = [
+  {
+    id: 1,
+    name: "iPhone 15 Pro Max",
+    category: "Smartphones",
+    price: 1199,
+    originalPrice: 1299,
+    image: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=400",
+    rating: 4.9,
+    reviews: 2547,
+    description: "The most powerful iPhone ever with A17 Pro chip, titanium design, and advanced camera system.",
+    inStock: true,
+    featured: true
+  },
+  {
+    id: 2,
+    name: "Samsung Galaxy S24 Ultra",
+    category: "Smartphones",
+    price: 1099,
+    originalPrice: 1199,
+    image: "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=400",
+    rating: 4.8,
+    reviews: 1823,
+    description: "Ultimate Galaxy experience with S Pen, 200MP camera, and Galaxy AI features.",
+    inStock: true,
+    featured: true
+  },
+  {
+    id: 3,
+    name: "MacBook Pro 16\" M3 Max",
+    category: "Laptops",
+    price: 2499,
+    originalPrice: 2699,
+    image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400",
+    rating: 4.9,
+    reviews: 1256,
+    description: "Supercharged by M3 Max chip with up to 128GB unified memory and stunning Liquid Retina XDR display.",
+    inStock: true,
+    featured: true
+  },
+  {
+    id: 4,
+    name: "Dell XPS 15",
+    category: "Laptops",
+    price: 1799,
+    originalPrice: 1999,
+    image: "https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=400",
+    rating: 4.7,
+    reviews: 892,
+    description: "Premium laptop with InfinityEdge display, Intel Core i9, and NVIDIA RTX graphics.",
+    inStock: true,
+    featured: false
+  },
+  {
+    id: 5,
+    name: "Sony WH-1000XM5",
+    category: "Headphones",
+    price: 349,
+    originalPrice: 399,
+    image: "https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=400",
+    rating: 4.8,
+    reviews: 3421,
+    description: "Industry-leading noise cancellation, exceptional sound quality, and 30-hour battery life.",
+    inStock: true,
+    featured: true
+  },
+  {
+    id: 6,
+    name: "Apple AirPods Pro 2",
+    category: "Headphones",
+    price: 249,
+    originalPrice: 279,
+    image: "https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=400",
+    rating: 4.7,
+    reviews: 4562,
+    description: "Active Noise Cancellation, Adaptive Audio, and USB-C charging case.",
+    inStock: true,
+    featured: false
+  },
+  {
+    id: 7,
+    name: "iPad Pro 12.9\" M2",
+    category: "Tablets",
+    price: 1099,
+    originalPrice: 1199,
+    image: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=400",
+    rating: 4.9,
+    reviews: 1847,
+    description: "The ultimate iPad experience with M2 chip, Liquid Retina XDR display, and Apple Pencil hover.",
+    inStock: true,
+    featured: true
+  },
+  {
+    id: 8,
+    name: "Samsung Galaxy Tab S9 Ultra",
+    category: "Tablets",
+    price: 999,
+    originalPrice: 1099,
+    image: "https://images.unsplash.com/photo-1561154464-82e9adf32764?w=400",
+    rating: 4.6,
+    reviews: 723,
+    description: "14.6-inch Dynamic AMOLED 2X display, S Pen included, and powerful Snapdragon processor.",
+    inStock: true,
+    featured: false
+  },
+  {
+    id: 9,
+    name: "Apple Watch Ultra 2",
+    category: "Wearables",
+    price: 799,
+    originalPrice: 849,
+    image: "https://images.unsplash.com/photo-1434493789847-2f02dc6ca35d?w=400",
+    rating: 4.8,
+    reviews: 1234,
+    description: "The most rugged and capable Apple Watch with precision GPS and 36-hour battery life.",
+    inStock: true,
+    featured: true
+  },
+  {
+    id: 10,
+    name: "Samsung Galaxy Watch 6 Classic",
+    category: "Wearables",
+    price: 429,
+    originalPrice: 479,
+    image: "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=400",
+    rating: 4.5,
+    reviews: 567,
+    description: "Classic rotating bezel design, advanced health monitoring, and Wear OS by Google.",
+    inStock: true,
+    featured: false
+  },
+  {
+    id: 11,
+    name: "Sony PlayStation 5",
+    category: "Gaming",
+    price: 499,
+    originalPrice: 549,
+    image: "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=400",
+    rating: 4.9,
+    reviews: 8934,
+    description: "Experience lightning-fast loading, haptic feedback, and stunning 4K graphics.",
+    inStock: true,
+    featured: true
+  },
+  {
+    id: 12,
+    name: "Nintendo Switch OLED",
+    category: "Gaming",
+    price: 349,
+    originalPrice: 379,
+    image: "https://images.unsplash.com/photo-1578303512597-81e6cc155b3e?w=400",
+    rating: 4.7,
+    reviews: 5621,
+    description: "Vibrant 7-inch OLED screen, enhanced audio, and wired LAN port in the dock.",
+    inStock: true,
+    featured: false
+  },
+  {
+    id: 13,
+    name: "LG C3 65\" OLED TV",
+    category: "TVs",
+    price: 1799,
+    originalPrice: 2099,
+    image: "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=400",
+    rating: 4.8,
+    reviews: 2134,
+    description: "Perfect blacks, infinite contrast, and α9 AI Processor Gen6 for stunning picture quality.",
+    inStock: true,
+    featured: true
+  },
+  {
+    id: 14,
+    name: "Samsung 75\" Neo QLED 8K",
+    category: "TVs",
+    price: 2999,
+    originalPrice: 3499,
+    image: "https://images.unsplash.com/photo-1461151304267-38535e780c79?w=400",
+    rating: 4.7,
+    reviews: 456,
+    description: "Quantum Matrix Technology Pro, Neural Quantum Processor 8K, and Object Tracking Sound Pro.",
+    inStock: true,
+    featured: false
+  },
+  {
+    id: 15,
+    name: "Canon EOS R5",
+    category: "Cameras",
+    price: 3899,
+    originalPrice: 4199,
+    image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400",
+    rating: 4.9,
+    reviews: 789,
+    description: "45MP full-frame sensor, 8K video recording, and advanced Dual Pixel CMOS AF II.",
+    inStock: true,
+    featured: true
+  },
+  {
+    id: 16,
+    name: "DJI Mavic 3 Pro",
+    category: "Cameras",
+    price: 2199,
+    originalPrice: 2399,
+    image: "https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=400",
+    rating: 4.8,
+    reviews: 1023,
+    description: "Triple-camera system, 43-min flight time, and omnidirectional obstacle sensing.",
+    inStock: true,
+    featured: false
+  }
+];
+
+export const categories = [
+  { id: 1, name: "Smartphones", icon: "📱" },
+  { id: 2, name: "Laptops", icon: "💻" },
+  { id: 3, name: "Headphones", icon: "🎧" },
+  { id: 4, name: "Tablets", icon: "📲" },
+  { id: 5, name: "Wearables", icon: "⌚" },
+  { id: 6, name: "Gaming", icon: "🎮" },
+  { id: 7, name: "TVs", icon: "📺" },
+  { id: 8, name: "Cameras", icon: "📷" }
+];
+
+export const sliderData = [
+  {
+    id: 1,
+    title: "Latest Smartphones",
+    subtitle: "Up to 30% Off",
+    description: "Discover the newest flagship phones with cutting-edge technology",
+    image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=1200",
+    buttonText: "Shop Now",
+    link: "/products?category=Smartphones"
+  },
+  {
+    id: 2,
+    title: "Premium Laptops",
+    subtitle: "Free Shipping",
+    description: "Power through your work with our collection of high-performance laptops",
+    image: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=1200",
+    buttonText: "Explore",
+    link: "/products?category=Laptops"
+  },
+  {
+    id: 3,
+    title: "Gaming Paradise",
+    subtitle: "New Arrivals",
+    description: "Level up your gaming experience with the latest consoles and accessories",
+    image: "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=1200",
+    buttonText: "Game On",
+    link: "/products?category=Gaming"
+  },
+  {
+    id: 4,
+    title: "Audio Excellence",
+    subtitle: "Premium Sound",
+    description: "Immerse yourself in crystal-clear audio with our headphone collection",
+    image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=1200",
+    buttonText: "Listen Now",
+    link: "/products?category=Headphones"
+  }
+];
