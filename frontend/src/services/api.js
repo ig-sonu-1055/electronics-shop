@@ -1,6 +1,6 @@
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://electronics-shop-backend-nax9.onrender.com';
 
-// Helper function for making requests
+// Helper function for making requests 
 const fetchAPI = async (endpoint, options = {}) => {
   const token = localStorage.getItem('adminToken');
   
