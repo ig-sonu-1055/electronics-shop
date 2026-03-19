@@ -2,7 +2,7 @@ import React, { createContext, useState, useContext, useEffect } from 'react';
 
 const AuthContext = createContext();
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'https://electronics-shop-backend-nax9.onrender.com';
 
 export const useAuth = () => {
   return useContext(AuthContext);
