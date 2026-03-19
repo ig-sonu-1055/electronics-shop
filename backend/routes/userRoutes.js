@@ -1,14 +1,20 @@
 const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
+const mongoose = require('mongoose');
 const User = require('../models/User');
 
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
 
+const isDatabaseConnected = () => mongoose.connection.readyState === 1;
+
 // Register
 router.post('/register', async (req, res) => {
   try {
+    if (!isDatabaseConnected()) {
+      return res.status(503).json({ message: 'Database is not connected. Please try again shortly.' });
+    }
+
     const { name, email, password, phone } = req.body;
 
     console.log('Register attempt:', { name, email, phone });
@@ -22,13 +28,10 @@ router.post('/register', async (req, res) => {
       return res.status(400).json({ message: 'Email already registered' });
     }
 
-    // Hash password before saving - using sync method
-    const hashedPassword = bcrypt.hashSync(password, 12);
-
     const user = new User({ 
       name, 
       email, 
-      password: hashedPassword, 
+      password,
       phone: phone || '' 
     });
     await user.save();
@@ -47,13 +50,25 @@ router.post('/register', async (req, res) => {
     });
   } catch (error) {
     console.error('Register error:', error);
-    res.status(400).json({ message: error.message });
+    if (error.code === 11000) {
+      return res.status(409).json({ message: 'Email already registered' });
+    }
+
+    if (error.name === 'ValidationError') {
+      return res.status(400).json({ message: error.message });
+    }
+
+    res.status(500).json({ message: 'Registration failed. Please try again.' });
   }
 });
 
 // Login
 router.post('/login', async (req, res) => {
   try {
+    if (!isDatabaseConnected()) {
+      return res.status(503).json({ message: 'Database is not connected. Please try again shortly.' });
+    }
+
     const { email, password } = req.body;
 
     const user = await User.findOne({ email });
