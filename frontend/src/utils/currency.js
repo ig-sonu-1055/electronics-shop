@@ -1,11 +1,11 @@
-const USD_TO_INR_RATE = 83;
-
 const toNumber = (value) => {
   const parsed = Number(value);
   return Number.isFinite(parsed) ? parsed : 0;
 };
 
-export const convertToINR = (value) => toNumber(value) * USD_TO_INR_RATE;
+// Prices in this project are stored as direct catalog values.
+// We format them as INR without applying a conversion multiplier.
+export const convertToINR = (value) => toNumber(value);
 
 export const formatINR = (value, options = {}) => {
   const amount = convertToINR(value);

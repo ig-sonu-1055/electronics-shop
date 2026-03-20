@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiHeart, FiShoppingCart, FiStar, FiEye, FiCheck } from 'react-icons/fi';
+import { FiHeart, FiShoppingCart, FiStar, FiEye, FiCheck, FiX } from 'react-icons/fi';
 import { useCart } from '../context/CartContext';
 import { formatINR } from '../utils/currency';
 import './ProductCard.css';
@@ -9,6 +9,7 @@ const ProductCard = ({ product }) => {
   const { addToCart, addToWishlist, isInWishlist, isInCart } = useCart();
   const [showAddedMessage, setShowAddedMessage] = useState(false);
   const [showWishlistMessage, setShowWishlistMessage] = useState(false);
+  const [showQuickView, setShowQuickView] = useState(false);
   const discount = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
 
   const handleAddToCart = (e) => {
@@ -23,6 +24,15 @@ const ProductCard = ({ product }) => {
     addToWishlist(product);
     setShowWishlistMessage(true);
     setTimeout(() => setShowWishlistMessage(false), 2000);
+  };
+
+  const handleQuickViewOpen = (e) => {
+    e.stopPropagation();
+    setShowQuickView(true);
+  };
+
+  const handleQuickViewClose = () => {
+    setShowQuickView(false);
   };
 
   return (
@@ -81,6 +91,7 @@ const ProductCard = ({ product }) => {
             className="action-btn"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
+            onClick={handleQuickViewOpen}
             title="Quick View"
           >
             <FiEye />
@@ -134,6 +145,80 @@ const ProductCard = ({ product }) => {
           )}
         </motion.button>
       </div>
+
+      <AnimatePresence>
+        {showQuickView && (
+          <motion.div
+            className="quick-view-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={handleQuickViewClose}
+          >
+            <motion.div
+              className="quick-view-modal"
+              initial={{ opacity: 0, y: 20, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 20, scale: 0.95 }}
+              transition={{ duration: 0.2 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button className="quick-view-close" onClick={handleQuickViewClose}>
+                <FiX />
+              </button>
+
+              <div className="quick-view-content">
+                <div className="quick-view-image-wrap">
+                  <img src={product.image} alt={product.name} className="quick-view-image" />
+                </div>
+
+                <div className="quick-view-details">
+                  <span className="quick-view-category">{product.category}</span>
+                  <h3>{product.name}</h3>
+
+                  <div className="quick-view-rating">
+                    <div className="stars">
+                      {[...Array(5)].map((_, i) => (
+                        <FiStar
+                          key={i}
+                          className={i < Math.floor(product.rating) ? 'star filled' : 'star'}
+                        />
+                      ))}
+                    </div>
+                    <span>{product.rating} ({(product.reviews || 0).toLocaleString()} reviews)</span>
+                  </div>
+
+                  <p className="quick-view-description">
+                    {product.description || 'Premium product with high-quality build and excellent performance.'}
+                  </p>
+
+                  <div className="quick-view-pricing">
+                    <span className="quick-current-price">{formatINR(product.price)}</span>
+                    {product.originalPrice > product.price && (
+                      <span className="quick-original-price">{formatINR(product.originalPrice)}</span>
+                    )}
+                  </div>
+
+                  <div className="quick-view-actions">
+                    <button
+                      className={`quick-add-btn ${isInCart(product.id) ? 'in-cart' : ''}`}
+                      onClick={handleAddToCart}
+                    >
+                      {isInCart(product.id) ? (<><FiCheck /> In Cart</>) : (<><FiShoppingCart /> Add to Cart</>)}
+                    </button>
+                    <button
+                      className={`quick-wishlist-btn ${isInWishlist(product.id) ? 'active' : ''}`}
+                      onClick={handleAddToWishlist}
+                    >
+                      <FiHeart /> Wishlist
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 };

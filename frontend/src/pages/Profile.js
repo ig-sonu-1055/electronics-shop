@@ -647,7 +647,7 @@ Thank you for your purchase!
                       <p>Update your account password</p>
                     </div>
                   </div>
-                  <button className="action-btn">Change</button>
+                  <button className="profile-action-btn">Change</button>
                 </div>
 
                 <div className="settings-item">
@@ -674,7 +674,7 @@ Thank you for your purchase!
                       <p>View your recent login activity</p>
                     </div>
                   </div>
-                  <button className="action-btn">View</button>
+                  <button className="profile-action-btn">View</button>
                 </div>
               </div>
 
@@ -823,7 +823,7 @@ Thank you for your purchase!
                         <p>Get a copy of all your personal data</p>
                       </div>
                     </div>
-                    <button className="action-btn">Download</button>
+                    <button className="profile-action-btn">Download</button>
                   </div>
                 </div>
               </div>
