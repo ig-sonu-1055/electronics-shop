@@ -9,7 +9,7 @@ import './Products.css';
 
 const Products = () => {
   const [searchParams] = useSearchParams();
-  const { products, categories, loading } = useProducts();
+  const { products, categories } = useProducts();
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [sortBy, setSortBy] = useState('featured');
