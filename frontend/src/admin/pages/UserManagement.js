@@ -20,6 +20,7 @@ import {
   FiUsers
 } from 'react-icons/fi';
 import { API_BASE_URL } from '../../utils/apiBase';
+import { formatINR } from '../../utils/currency';
 import './UserManagement.css';
 
 const API_URL = API_BASE_URL;
@@ -241,7 +242,7 @@ const UserManagement = () => {
                 <td className="phone-cell">{user.phone}</td>
                 <td className="date-cell">{formatDate(user.joinDate)}</td>
                 <td className="orders-cell">{user.orders}</td>
-                <td className="spent-cell">${user.totalSpent.toLocaleString()}</td>
+                <td className="spent-cell">{formatINR(user.totalSpent)}</td>
                 <td>
                   <span className={getStatusClass(user.status)}>
                     {user.status}
@@ -353,11 +354,11 @@ const UserManagement = () => {
                   <span className="stat-text">Orders</span>
                 </div>
                 <div className="stat-box">
-                  <span className="stat-num">${selectedUser.totalSpent.toLocaleString()}</span>
+                  <span className="stat-num">{formatINR(selectedUser.totalSpent)}</span>
                   <span className="stat-text">Total Spent</span>
                 </div>
                 <div className="stat-box">
-                  <span className="stat-num">${(selectedUser.totalSpent / selectedUser.orders || 0).toFixed(2)}</span>
+                  <span className="stat-num">{formatINR(selectedUser.totalSpent / selectedUser.orders || 0)}</span>
                   <span className="stat-text">Avg Order</span>
                 </div>
               </div>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiHeart, FiShoppingCart, FiStar, FiEye, FiCheck } from 'react-icons/fi';
 import { useCart } from '../context/CartContext';
+import { formatINR } from '../utils/currency';
 import './ProductCard.css';
 
 const ProductCard = ({ product }) => {
@@ -114,9 +115,9 @@ const ProductCard = ({ product }) => {
         </div>
 
         <div className="product-pricing">
-          <span className="current-price">${product.price.toLocaleString()}</span>
+          <span className="current-price">{formatINR(product.price)}</span>
           {product.originalPrice > product.price && (
-            <span className="original-price">${product.originalPrice.toLocaleString()}</span>
+            <span className="original-price">{formatINR(product.originalPrice)}</span>
           )}
         </div>
 

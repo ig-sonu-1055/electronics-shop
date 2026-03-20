@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiTrash2, FiPlus, FiMinus, FiShoppingBag, FiArrowLeft, FiHeart } from 'react-icons/fi';
 import { useCart } from '../context/CartContext';
+import { formatINR } from '../utils/currency';
 import './Cart.css';
 
 const Cart = () => {
@@ -62,7 +63,7 @@ const Cart = () => {
                     <img src={item.image} alt={item.name} />
                     <div className="wishlist-item-info">
                       <h4>{item.name}</h4>
-                      <p className="wishlist-price">${item.price.toFixed(2)}</p>
+                      <p className="wishlist-price">{formatINR(item.price)}</p>
                     </div>
                     <div className="wishlist-actions">
                       <button 
@@ -120,7 +121,7 @@ const Cart = () => {
                   <div className="cart-item-details">
                     <h3 className="cart-item-name">{item.name}</h3>
                     <p className="cart-item-category">{item.category}</p>
-                    <p className="cart-item-price">${item.price.toFixed(2)}</p>
+                    <p className="cart-item-price">{formatINR(item.price)}</p>
                   </div>
 
                   <div className="cart-item-quantity">
@@ -144,7 +145,7 @@ const Cart = () => {
                   <div className="cart-item-total">
                     <span className="item-total-label">Total</span>
                     <span className="item-total-price">
-                      ${(item.price * item.quantity).toFixed(2)}
+                      {formatINR(item.price * item.quantity)}
                     </span>
                   </div>
 
@@ -164,22 +165,22 @@ const Cart = () => {
             
             <div className="summary-row">
               <span>Subtotal ({itemCount} items)</span>
-              <span>${subtotal.toFixed(2)}</span>
+              <span>{formatINR(subtotal)}</span>
             </div>
             
             <div className="summary-row">
               <span>Shipping</span>
-              <span>{shipping === 0 ? 'Free' : `$${shipping.toFixed(2)}`}</span>
+              <span>{shipping === 0 ? 'Free' : formatINR(shipping)}</span>
             </div>
             
             <div className="summary-row">
               <span>Estimated Tax</span>
-              <span>${tax.toFixed(2)}</span>
+              <span>{formatINR(tax)}</span>
             </div>
 
             {subtotal >= 100 && (
               <div className="free-shipping-banner">
-                🎉 You qualify for FREE shipping!
+                🎉 You qualify for FREE shipping above {formatINR(100)}!
               </div>
             )}
 
@@ -187,7 +188,7 @@ const Cart = () => {
             
             <div className="summary-row total-row">
               <span>Total</span>
-              <span>${total.toFixed(2)}</span>
+              <span>{formatINR(total)}</span>
             </div>
 
             <button className="checkout-btn" onClick={handleCheckout}>
@@ -219,7 +220,7 @@ const Cart = () => {
                   <img src={item.image} alt={item.name} />
                   <div className="wishlist-card-info">
                     <h4>{item.name}</h4>
-                    <p className="wishlist-price">${item.price.toFixed(2)}</p>
+                    <p className="wishlist-price">{formatINR(item.price)}</p>
                     <div className="wishlist-card-actions">
                       <button 
                         className="move-to-cart-btn"

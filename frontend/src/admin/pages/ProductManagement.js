@@ -15,6 +15,7 @@ import {
   FiAlertCircle
 } from 'react-icons/fi';
 import { useProducts } from '../../context/ProductContext';
+import { formatINR } from '../../utils/currency';
 import './ProductManagement.css';
 
 const ProductManagement = () => {
@@ -199,7 +200,7 @@ const ProductManagement = () => {
                 <td>
                   <span className="category-badge">{product.category}</span>
                 </td>
-                <td className="price-cell">${product.price.toLocaleString()}</td>
+                <td className="price-cell">{formatINR(product.price)}</td>
                 <td>
                   <span className={`stock-badge ${product.stock < 20 ? 'low' : ''}`}>
                     {product.stock}
@@ -306,7 +307,7 @@ const ProductManagement = () => {
 
                 <div className="form-row">
                   <div className="form-group">
-                    <label>Price ($)</label>
+                    <label>Price (INR)</label>
                     <div className="input-wrapper">
                       <FiDollarSign />
                       <input

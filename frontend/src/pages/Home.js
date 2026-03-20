@@ -18,7 +18,7 @@ const Home = () => {
   const newArrivals = products.slice(0, 8);
 
   const features = [
-    { icon: <FiTruck />, title: 'Free Shipping', description: 'On orders over $99' },
+    { icon: <FiTruck />, title: 'Free Shipping', description: 'On orders over ₹8,217' },
     { icon: <FiShield />, title: 'Secure Payment', description: '100% secure transactions' },
     { icon: <FiHeadphones />, title: '24/7 Support', description: 'Dedicated support team' },
     { icon: <FiRefreshCw />, title: 'Easy Returns', description: '30-day return policy' },

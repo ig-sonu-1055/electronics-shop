@@ -18,6 +18,7 @@ import {
   FiCalendar
 } from 'react-icons/fi';
 import { API_BASE_URL } from '../../utils/apiBase';
+import { formatINR } from '../../utils/currency';
 import './OrderManagement.css';
 
 const API_URL = API_BASE_URL;
@@ -200,7 +201,7 @@ const OrderManagement = () => {
             <FiDollarSign />
           </div>
           <div className="stat-info">
-            <span className="stat-value">${stats.revenue.toLocaleString()}</span>
+            <span className="stat-value">{formatINR(stats.revenue)}</span>
             <span className="stat-label">Revenue</span>
           </div>
         </div>
@@ -263,7 +264,7 @@ const OrderManagement = () => {
                   </div>
                 </td>
                 <td className="items-cell">{order.items.length} item(s)</td>
-                <td className="total-cell">${order.total.toLocaleString()}</td>
+                <td className="total-cell">{formatINR(order.total)}</td>
                 <td>
                   <span className={getPaymentStatusClass(order.paymentStatus)}>
                     {order.paymentStatus}
@@ -408,13 +409,13 @@ const OrderManagement = () => {
                         <span className="item-name">{item.name}</span>
                         <span className="item-qty">x{item.quantity}</span>
                       </div>
-                      <span className="item-price">${(item.price * item.quantity).toLocaleString()}</span>
+                      <span className="item-price">{formatINR(item.price * item.quantity)}</span>
                     </div>
                   ))}
                 </div>
                 <div className="order-total">
                   <span>Total</span>
-                  <span className="total-amount">${selectedOrder.total.toLocaleString()}</span>
+                  <span className="total-amount">{formatINR(selectedOrder.total)}</span>
                 </div>
               </div>
             </motion.div>

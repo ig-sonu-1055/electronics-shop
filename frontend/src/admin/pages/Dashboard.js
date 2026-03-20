@@ -14,6 +14,7 @@ import {
   FiTruck
 } from 'react-icons/fi';
 import { adminAPI } from '../../services/api';
+import { formatINR, formatINRCompact } from '../../utils/currency';
 import './Dashboard.css';
 
 const Dashboard = () => {
@@ -100,7 +101,7 @@ const Dashboard = () => {
     },
     { 
       title: 'Revenue', 
-      value: `$${stats.totalRevenue.toLocaleString()}`, 
+      value: formatINR(stats.totalRevenue), 
       icon: FiDollarSign, 
       change: '+15%',
       trend: 'up',
@@ -189,7 +190,7 @@ const Dashboard = () => {
                     animate={{ height: `${(item.sales / maxSales) * 100}%` }}
                     transition={{ delay: 0.5 + index * 0.1, duration: 0.5 }}
                   >
-                    <span className="bar-value">${(item.sales / 1000).toFixed(1)}k</span>
+                    <span className="bar-value">{formatINRCompact(item.sales)}</span>
                   </motion.div>
                   <span className="bar-label">{item.month}</span>
                 </div>
@@ -224,7 +225,7 @@ const Dashboard = () => {
                   <span className="order-id">{order.id}</span>
                   <span className="order-customer">{order.customer}</span>
                 </div>
-                <div className="order-amount">${order.amount.toFixed(2)}</div>
+                <div className="order-amount">{formatINR(order.amount)}</div>
                 <div className={getStatusClass(order.status)}>
                   {getStatusIcon(order.status)}
                   <span>{order.status}</span>

@@ -36,6 +36,7 @@ import {
 import { useAuth } from '../context/AuthContext';
 import { useCart } from '../context/CartContext';
 import { API_BASE_URL } from '../utils/apiBase';
+import { formatINR } from '../utils/currency';
 import './Profile.css';
 
 const API_URL = API_BASE_URL;
@@ -65,7 +66,7 @@ const Profile = () => {
     return saved ? JSON.parse(saved) : {
       theme: 'dark',
       language: 'en',
-      currency: 'USD',
+      currency: 'INR',
       emailNotifications: true,
       orderUpdates: true,
       promotionalEmails: false,
@@ -219,15 +220,15 @@ ${order.shippingAddress?.country || ''}
 Items:
 ----------------------------------------
 ${order.items.map(item => 
-  `${item.name}\n  Qty: ${item.quantity} x $${item.price.toFixed(2)} = $${(item.quantity * item.price).toFixed(2)}`
+  `${item.name}\n  Qty: ${item.quantity} x ${formatINR(item.price)} = ${formatINR(item.quantity * item.price)}`
 ).join('\n\n')}
 
 ----------------------------------------
-Subtotal: $${order.items.reduce((sum, item) => sum + (item.price * item.quantity), 0).toFixed(2)}
-Shipping: $${(order.shippingCost || 0).toFixed(2)}
-Tax: $${(order.taxAmount || 0).toFixed(2)}
+Subtotal: ${formatINR(order.items.reduce((sum, item) => sum + (item.price * item.quantity), 0))}
+Shipping: ${formatINR(order.shippingCost || 0)}
+Tax: ${formatINR(order.taxAmount || 0)}
 ----------------------------------------
-TOTAL: $${order.totalAmount.toFixed(2)}
+TOTAL: ${formatINR(order.totalAmount)}
 ========================================
 
 Payment Method: ${order.paymentMethod || 'N/A'}
@@ -416,7 +417,7 @@ Thank you for your purchase!
                 <div className="stat-card">
                   <FiCreditCard />
                   <div className="stat-info">
-                    <h4>${totalSpent.toLocaleString()}</h4>
+                    <h4>{formatINR(totalSpent)}</h4>
                     <p>Total Spent</p>
                   </div>
                 </div>
@@ -475,7 +476,7 @@ Thank you for your purchase!
                               <span className="item-name">{item.name}</span>
                               <span className="item-qty">Qty: {item.quantity}</span>
                             </div>
-                            <span className="item-price">${item.price}</span>
+                            <span className="item-price">{formatINR(item.price)}</span>
                           </div>
                         ))}
                         {order.items.length > 3 && (
@@ -486,7 +487,7 @@ Thank you for your purchase!
                       <div className="order-footer">
                         <div className="order-total">
                           <span>Total:</span>
-                          <strong>${order.totalAmount.toLocaleString()}</strong>
+                          <strong>{formatINR(order.totalAmount)}</strong>
                         </div>
                         <div className="order-actions">
                           {order.status === 'delivered' && (
@@ -767,11 +768,10 @@ Thank you for your purchase!
                       value={settings.currency}
                       onChange={(e) => updateSetting('currency', e.target.value)}
                     >
-                      <option value="USD">USD ($)</option>
+                      <option value="INR">INR (₹)</option>
                       <option value="EUR">EUR (€)</option>
                       <option value="GBP">GBP (£)</option>
                       <option value="JPY">JPY (¥)</option>
-                      <option value="INR">INR (₹)</option>
                       <option value="AUD">AUD ($)</option>
                       <option value="CAD">CAD ($)</option>
                     </select>
@@ -908,7 +908,7 @@ Thank you for your purchase!
                       <span className="modal-item-name">{item.name}</span>
                       <span className="modal-item-qty">Qty: {item.quantity}</span>
                     </div>
-                    <span className="modal-item-price">${(item.price * item.quantity).toFixed(2)}</span>
+                    <span className="modal-item-price">{formatINR(item.price * item.quantity)}</span>
                   </div>
                 ))}
               </div>
@@ -916,19 +916,19 @@ Thank you for your purchase!
               <div className="modal-summary">
                 <div className="summary-row">
                   <span>Subtotal:</span>
-                  <span>${selectedOrder.items.reduce((sum, item) => sum + (item.price * item.quantity), 0).toFixed(2)}</span>
+                  <span>{formatINR(selectedOrder.items.reduce((sum, item) => sum + (item.price * item.quantity), 0))}</span>
                 </div>
                 <div className="summary-row">
                   <span>Shipping:</span>
-                  <span>${(selectedOrder.shippingCost || 0).toFixed(2)}</span>
+                  <span>{formatINR(selectedOrder.shippingCost || 0)}</span>
                 </div>
                 <div className="summary-row">
                   <span>Tax:</span>
-                  <span>${(selectedOrder.taxAmount || 0).toFixed(2)}</span>
+                  <span>{formatINR(selectedOrder.taxAmount || 0)}</span>
                 </div>
                 <div className="summary-row total">
                   <span>Total:</span>
-                  <strong>${selectedOrder.totalAmount.toFixed(2)}</strong>
+                  <strong>{formatINR(selectedOrder.totalAmount)}</strong>
                 </div>
               </div>
 

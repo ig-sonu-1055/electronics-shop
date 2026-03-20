@@ -22,6 +22,7 @@ import {
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import { API_BASE_URL } from '../utils/apiBase';
+import { formatINR } from '../utils/currency';
 import './Checkout.css';
 
 const API_URL = API_BASE_URL;
@@ -584,7 +585,7 @@ const Checkout = () => {
                             <p>Qty: {item.quantity}</p>
                           </div>
                           <span className="review-item-price">
-                            ${(item.price * item.quantity).toFixed(2)}
+                            {formatINR(item.price * item.quantity)}
                           </span>
                         </div>
                       ))}
@@ -607,7 +608,7 @@ const Checkout = () => {
                         </>
                       ) : (
                         <>
-                          <FiLock /> Place Order - ${total.toFixed(2)}
+                          <FiLock /> Place Order - {formatINR(total)}
                         </>
                       )}
                     </button>
@@ -629,10 +630,10 @@ const Checkout = () => {
                   </div>
                   <div className="summary-item-info">
                     <h4>{item.name}</h4>
-                    <p>${item.price.toFixed(2)}</p>
+                    <p>{formatINR(item.price)}</p>
                   </div>
                   <span className="summary-item-total">
-                    ${(item.price * item.quantity).toFixed(2)}
+                    {formatINR(item.price * item.quantity)}
                   </span>
                 </div>
               ))}
@@ -642,22 +643,22 @@ const Checkout = () => {
 
             <div className="summary-row">
               <span>Subtotal</span>
-              <span>${subtotal.toFixed(2)}</span>
+              <span>{formatINR(subtotal)}</span>
             </div>
             <div className="summary-row">
               <span>Shipping</span>
-              <span>{shipping === 0 ? 'Free' : `$${shipping.toFixed(2)}`}</span>
+              <span>{shipping === 0 ? 'Free' : formatINR(shipping)}</span>
             </div>
             <div className="summary-row">
               <span>Tax</span>
-              <span>${tax.toFixed(2)}</span>
+              <span>{formatINR(tax)}</span>
             </div>
 
             <div className="summary-divider"></div>
 
             <div className="summary-row total">
               <span>Total</span>
-              <span>${total.toFixed(2)}</span>
+              <span>{formatINR(total)}</span>
             </div>
 
             <div className="secure-notice">
