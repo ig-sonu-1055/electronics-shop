@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { AdminProvider } from './context/AdminContext';
 import { ProductProvider } from './context/ProductContext';
@@ -72,6 +72,7 @@ function App() {
                 {/* Admin Routes */}
                 <Route path="/admin/login" element={<AdminLogin />} />
                 <Route path="/admin" element={<AdminLayout />}>
+                  <Route index element={<Navigate to="dashboard" replace />} />
                   <Route path="dashboard" element={<Dashboard />} />
                   <Route path="products" element={<ProductManagement />} />
                   <Route path="users" element={<UserManagement />} />

@@ -18,7 +18,7 @@ const Settings = () => {
   const [activeTab, setActiveTab] = useState('profile');
   const [settings, setSettings] = useState({
     name: 'Admin User',
-    email: 'admin@electroshop.com',
+    email: 'admin@sjelectro.com',
     currentPassword: '',
     newPassword: '',
     confirmPassword: '',

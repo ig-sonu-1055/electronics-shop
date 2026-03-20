@@ -76,7 +76,7 @@ const AdminLogin = () => {
               <input
                 type="email"
                 id="email"
-                placeholder="admin@electroshop.com"
+                placeholder="admin@sjelectro.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
