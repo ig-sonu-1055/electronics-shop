@@ -19,9 +19,10 @@ import {
   FiAlertCircle,
   FiUsers
 } from 'react-icons/fi';
+import { API_BASE_URL } from '../../utils/apiBase';
 import './UserManagement.css';
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = API_BASE_URL;
 
 const UserManagement = () => {
   const [users, setUsers] = useState([]);

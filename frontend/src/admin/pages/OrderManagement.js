@@ -17,9 +17,10 @@ import {
   FiDollarSign,
   FiCalendar
 } from 'react-icons/fi';
+import { API_BASE_URL } from '../../utils/apiBase';
 import './OrderManagement.css';
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = API_BASE_URL;
 
 const OrderManagement = () => {
   const [orders, setOrders] = useState([]);

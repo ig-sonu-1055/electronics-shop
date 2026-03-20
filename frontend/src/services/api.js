@@ -1,12 +1,4 @@
-const normalizeApiBase = (url) => {
-  const trimmed = (url || '').trim().replace(/\/$/, '');
-  if (!trimmed) return '';
-  return trimmed.endsWith('/api') ? trimmed : `${trimmed}/api`;
-};
-
-const API_BASE_URL = normalizeApiBase(
-  process.env.REACT_APP_API_URL || 'https://electronics-shop-backend-nax9.onrender.com/api'
-);
+import { API_BASE_URL } from '../utils/apiBase';
 
 // Helper function for making requests 
 const fetchAPI = async (endpoint, options = {}) => {

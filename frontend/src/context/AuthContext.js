@@ -1,16 +1,9 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
+import { API_BASE_URL } from '../utils/apiBase';
 
 const AuthContext = createContext();
 
-const normalizeApiBase = (url) => {
-  const trimmed = (url || '').trim().replace(/\/$/, '');
-  if (!trimmed) return '';
-  return trimmed.endsWith('/api') ? trimmed : `${trimmed}/api`;
-};
-
-const API_URL = normalizeApiBase(
-  process.env.REACT_APP_API_URL || 'https://electronics-shop-backend-nax9.onrender.com/api'
-);
+const API_URL = API_BASE_URL;
 
 const parseResponseBody = async (response) => {
   const contentType = response.headers.get('content-type') || '';

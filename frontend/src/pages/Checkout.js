@@ -21,9 +21,10 @@ import {
 } from 'react-icons/fa';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
+import { API_BASE_URL } from '../utils/apiBase';
 import './Checkout.css';
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = API_BASE_URL;
 
 const Checkout = () => {
   const navigate = useNavigate();

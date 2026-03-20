@@ -35,9 +35,10 @@ import {
 } from 'react-icons/fi';
 import { useAuth } from '../context/AuthContext';
 import { useCart } from '../context/CartContext';
+import { API_BASE_URL } from '../utils/apiBase';
 import './Profile.css';
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = API_BASE_URL;
 
 const Profile = () => {
   const { user, isAuthenticated, updateProfile, logout } = useAuth();
