@@ -31,6 +31,8 @@ body {
   flex: 1;
   position: relative;
   z-index: 1;
+  width: 100%;
+  overflow-x: clip;
 }
 
 .app-ambient {
@@ -224,9 +226,9 @@ body {
 
 /* Utility Classes */
 .container {
-  max-width: 1400px;
+  width: min(1400px, 100% - 4rem);
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0;
 }
 
 .text-gradient {
@@ -251,7 +253,7 @@ body {
 /* Responsive Utilities */
 @media (max-width: 768px) {
   .container {
-    padding: 0 1rem;
+    width: min(1400px, 100% - 2rem);
   }
 
   .ambient-orb {
@@ -271,6 +273,16 @@ body {
   .ambient-orb-3 {
     width: 150px;
     height: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    width: min(1400px, 100% - 1.25rem);
+  }
+
+  .ambient-orb {
+    opacity: 0.16;
   }
 }
 

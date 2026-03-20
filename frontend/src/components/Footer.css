@@ -306,6 +306,20 @@
     padding: 0 1rem;
   }
 
+  .footer-newsletter {
+    padding: 1.25rem;
+    border-radius: 16px;
+  }
+
+  .newsletter-content h3 {
+    font-size: 1.2rem;
+  }
+
+  .newsletter-form button {
+    width: 100%;
+    justify-content: center;
+  }
+
   .footer-links-section {
     grid-template-columns: 1fr;
   }
@@ -317,5 +331,11 @@
   .footer-links-column h4::after {
     left: 50%;
     transform: translateX(-50%);
+  }
+
+  .payment-methods {
+    font-size: 1.25rem;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 }

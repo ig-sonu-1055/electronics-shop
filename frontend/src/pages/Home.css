@@ -387,12 +387,30 @@
     font-size: 2rem;
   }
 
+  .banner-content p {
+    font-size: 1rem;
+  }
+
+  .banner-section {
+    padding-top: 1rem;
+  }
+
   .cta-form {
     flex-direction: column;
   }
 }
 
 @media (max-width: 480px) {
+  .promo-banner {
+    padding: 2rem 1.1rem;
+    border-radius: 18px;
+  }
+
+  .banner-image img {
+    width: 190px;
+    height: 190px;
+  }
+
   .features-grid {
     grid-template-columns: 1fr;
   }
@@ -407,5 +425,14 @@
 
   .cta-content h2 {
     font-size: 1.8rem;
+  }
+
+  .cta-content p {
+    font-size: 0.98rem;
+  }
+
+  .cta-form input,
+  .cta-form button {
+    width: 100%;
   }
 }

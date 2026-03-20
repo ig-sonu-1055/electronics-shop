@@ -431,7 +431,7 @@
 @media (max-width: 1024px) {
   .admin-sidebar {
     transform: translateX(-100%);
-    width: 280px;
+    width: min(320px, 86vw);
   }
   
   .admin-sidebar.mobile-open {
@@ -474,6 +474,20 @@
 @media (max-width: 640px) {
   .admin-header {
     padding: 0 15px;
+  }
+
+  .header-left {
+    gap: 10px;
+  }
+
+  .header-right {
+    gap: 10px;
+  }
+
+  .notification-btn,
+  .sidebar-toggle {
+    width: 38px;
+    height: 38px;
   }
   
   .admin-content {
