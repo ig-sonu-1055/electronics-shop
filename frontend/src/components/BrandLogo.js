@@ -2,7 +2,7 @@ import React from 'react';
 
 const BrandLogo = ({
   markClassName = 'brand-mark',
-  text = 'sonyelctronics',
+  text = 'SJ ELECTRO',
   textClassName = 'logo-text'
 }) => {
   return (

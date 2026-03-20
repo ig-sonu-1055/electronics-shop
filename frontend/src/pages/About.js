@@ -11,29 +11,6 @@ const About = () => {
     { icon: <FiGlobe />, value: '25+', label: 'Countries Served' },
   ];
 
-  const team = [
-    {
-      name: 'John Smith',
-      role: 'CEO & Founder',
-      image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400',
-    },
-    {
-      name: 'Sarah Johnson',
-      role: 'Head of Operations',
-      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400',
-    },
-    {
-      name: 'Mike Chen',
-      role: 'Tech Director',
-      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400',
-    },
-    {
-      name: 'Emily Davis',
-      role: 'Customer Success',
-      image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400',
-    },
-  ];
-
   const values = [
     {
       title: 'Quality First',
@@ -161,41 +138,6 @@ const About = () => {
                 <div className="value-number">0{index + 1}</div>
                 <h3>{value.title}</h3>
                 <p>{value.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Team Section */}
-      <section className="team-section">
-        <div className="container">
-          <motion.div 
-            className="section-header"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <h2>Meet Our Team</h2>
-            <p>The passionate people behind ElectroShop</p>
-          </motion.div>
-
-          <div className="team-grid">
-            {team.map((member, index) => (
-              <motion.div 
-                key={index}
-                className="team-card"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -10 }}
-              >
-                <div className="member-image">
-                  <img src={member.image} alt={member.name} />
-                </div>
-                <h3>{member.name}</h3>
-                <p>{member.role}</p>
               </motion.div>
             ))}
           </div>
