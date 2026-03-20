@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiGrid, FiList, FiFilter, FiX, FiChevronDown } from 'react-icons/fi';
+import { FiGrid, FiList, FiFilter, FiX, FiChevronDown, FiArrowRight } from 'react-icons/fi';
 import ProductCard from '../components/ProductCard';
 import { useProducts } from '../context/ProductContext';
+import { formatINR } from '../utils/currency';
 import './Products.css';
 
 const Products = () => {
@@ -16,6 +17,18 @@ const Products = () => {
   const [viewMode, setViewMode] = useState('grid');
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [activeBanner, setActiveBanner] = useState(0);
+
+  const offerProducts = products.filter((p) => p.featured).slice(0, 4);
+
+  const offerSlides = offerProducts.map((product, index) => ({
+    id: product.id,
+    title: index % 2 === 0 ? 'Hot Tech Deal' : 'Limited Time Offer',
+    subtitle: `${product.name}`,
+    highlight: `${Math.max(8, Math.min(35, Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)))}% OFF`,
+    price: product.price,
+    image: product.image,
+  }));
 
   useEffect(() => {
     const category = searchParams.get('category');
@@ -73,6 +86,16 @@ const Products = () => {
     setFilteredProducts(result);
   }, [products, selectedCategory, sortBy, priceRange, searchQuery]);
 
+  useEffect(() => {
+    if (offerSlides.length <= 1) return undefined;
+
+    const interval = setInterval(() => {
+      setActiveBanner((prev) => (prev + 1) % offerSlides.length);
+    }, 3500);
+
+    return () => clearInterval(interval);
+  }, [offerSlides.length]);
+
   const handlePriceChange = (e, index) => {
     const newRange = [...priceRange];
     newRange[index] = parseInt(e.target.value);
@@ -82,14 +105,57 @@ const Products = () => {
   return (
     <div className="products-page">
       <div className="products-hero">
-        <motion.div 
-          className="hero-content"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-        >
-          <h1>Our Products</h1>
-          <p>Discover our wide range of premium electronics</p>
-        </motion.div>
+        <AnimatePresence mode="wait">
+          {offerSlides.length > 0 ? (
+            <motion.div
+              key={offerSlides[activeBanner].id}
+              className="hero-slide-card"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.35 }}
+            >
+              <div className="hero-slide-content">
+                <span className="hero-chip">{offerSlides[activeBanner].title}</span>
+                <h1>{offerSlides[activeBanner].subtitle}</h1>
+                <p>
+                  Save big now: <strong>{offerSlides[activeBanner].highlight}</strong>
+                </p>
+                <div className="hero-cta-row">
+                  <span className="hero-price">Now {formatINR(offerSlides[activeBanner].price)}</span>
+                  <button className="hero-shop-btn" onClick={() => setSearchQuery(offerSlides[activeBanner].subtitle)}>
+                    Shop This <FiArrowRight />
+                  </button>
+                </div>
+              </div>
+              <div className="hero-slide-image-wrap">
+                <img src={offerSlides[activeBanner].image} alt={offerSlides[activeBanner].subtitle} className="hero-slide-image" />
+              </div>
+            </motion.div>
+          ) : (
+            <motion.div
+              className="hero-content"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+            >
+              <h1>Our Products</h1>
+              <p>Discover our wide range of premium electronics</p>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {offerSlides.length > 1 && (
+          <div className="hero-dots" role="tablist" aria-label="Offer slides">
+            {offerSlides.map((slide, index) => (
+              <button
+                key={slide.id}
+                className={`hero-dot ${activeBanner === index ? 'active' : ''}`}
+                onClick={() => setActiveBanner(index)}
+                aria-label={`Show offer ${index + 1}`}
+              />
+            ))}
+          </div>
+        )}
       </div>
 
       <div className="products-container">

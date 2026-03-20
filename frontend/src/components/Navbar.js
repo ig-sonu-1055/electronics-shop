@@ -115,7 +115,7 @@ const Navbar = () => {
 
         {/* Action Icons */}
         <div className="navbar-actions">
-          <Link to="/cart" className="icon-link">
+          <Link to="/wishlist" className="icon-link">
             <motion.div
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
@@ -270,6 +270,13 @@ const Navbar = () => {
                 {link.label}
               </Link>
             ))}
+            <Link
+              to="/wishlist"
+              className="mobile-nav-link"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              <FiHeart /> Wishlist {wishlistCount > 0 && `(${wishlistCount})`}
+            </Link>
             <Link
               to="/cart"
               className="mobile-nav-link"

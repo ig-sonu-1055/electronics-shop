@@ -14,6 +14,7 @@ import Register from './pages/Register';
 import Profile from './pages/Profile';
 import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
+import Wishlist from './pages/Wishlist';
 
 // Admin imports
 import AdminLayout from './admin/components/AdminLayout';
@@ -64,6 +65,7 @@ function App() {
                 <Route path="/register" element={<Register />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/cart" element={<Cart />} />
+                <Route path="/wishlist" element={<Wishlist />} />
                 <Route path="/checkout" element={<Checkout />} />
                 <Route path="/orders" element={<Profile />} />
 
