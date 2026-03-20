@@ -1,4 +1,12 @@
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://electronics-shop-backend-nax9.onrender.com';
+const normalizeApiBase = (url) => {
+  const trimmed = (url || '').trim().replace(/\/$/, '');
+  if (!trimmed) return '';
+  return trimmed.endsWith('/api') ? trimmed : `${trimmed}/api`;
+};
+
+const API_BASE_URL = normalizeApiBase(
+  process.env.REACT_APP_API_URL || 'https://electronics-shop-backend-nax9.onrender.com/api'
+);
 
 // Helper function for making requests 
 const fetchAPI = async (endpoint, options = {}) => {
@@ -15,7 +23,10 @@ const fetchAPI = async (endpoint, options = {}) => {
     headers
   });
 
-  const data = await response.json();
+  const contentType = response.headers.get('content-type') || '';
+  const data = contentType.includes('application/json')
+    ? await response.json()
+    : { message: `Request failed with status ${response.status}` };
 
   if (!response.ok) {
     throw new Error(data.message || 'Something went wrong');

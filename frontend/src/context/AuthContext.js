@@ -2,7 +2,26 @@ import React, { createContext, useState, useContext, useEffect } from 'react';
 
 const AuthContext = createContext();
 
-const API_URL = 'https://electronics-shop-backend-nax9.onrender.com';
+const normalizeApiBase = (url) => {
+  const trimmed = (url || '').trim().replace(/\/$/, '');
+  if (!trimmed) return '';
+  return trimmed.endsWith('/api') ? trimmed : `${trimmed}/api`;
+};
+
+const API_URL = normalizeApiBase(
+  process.env.REACT_APP_API_URL || 'https://electronics-shop-backend-nax9.onrender.com/api'
+);
+
+const parseResponseBody = async (response) => {
+  const contentType = response.headers.get('content-type') || '';
+
+  if (contentType.includes('application/json')) {
+    return response.json();
+  }
+
+  const text = await response.text();
+  return { message: text || `Request failed with status ${response.status}` };
+};
 
 export const useAuth = () => {
   return useContext(AuthContext);
@@ -37,7 +56,7 @@ export const AuthProvider = ({ children }) => {
         body: JSON.stringify({ email, password }),
       });
 
-      const data = await response.json();
+      const data = await parseResponseBody(response);
 
       if (!response.ok) {
         return { success: false, message: data.message || 'Login failed' };
@@ -73,7 +92,7 @@ export const AuthProvider = ({ children }) => {
         body: JSON.stringify({ name, email, password, phone }),
       });
 
-      const data = await response.json();
+      const data = await parseResponseBody(response);
 
       if (!response.ok) {
         return { success: false, message: data.message || 'Registration failed' };
@@ -118,7 +137,7 @@ export const AuthProvider = ({ children }) => {
         body: JSON.stringify(updatedData),
       });
 
-      const data = await response.json();
+      const data = await parseResponseBody(response);
 
       if (!response.ok) {
         return { success: false, message: data.message || 'Update failed' };
